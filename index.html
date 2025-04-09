@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pantalla de Juegos</title>
+  <style>
+    /* Estilos generales */
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #f3f4f6;
+      font-family: Arial, sans-serif;
+      position: relative;
+      min-height: 100vh;
+    }
+    
+    h1 {
+      margin: 20px;
+      font-size: 24px;
+      color: #333;
+      text-align: center;
+      z-index: 1;
+    }
+    
+    .button-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      justify-items: center;
+      width: 90%;
+      max-width: 800px;
+      z-index: 1;
+    }
+    
+    .button {
+      width: 150px;
+      height: 150px;
+      border: none;
+      border-radius: 10px;
+      background-color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    
+    .button img {
+      width: 80%;
+      height: auto;
+    }
+    
+    .button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Media query para dispositivos móviles */
+    @media (max-width: 600px) {
+      .button-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .button {
+        width: 120px;
+        height: 120px;
+      }
+      
+      h1 {
+        font-size: 20px;
+      }
+    }
+
+    /* Botón de cerrar */
+    .form-close-btn {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background-color: #dc3545;
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-weight: bold;
+      z-index: 11;
+      border: 2px solid white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      display: none;
+    }
+
+    /* Formulario de fondo */
+    .background-form {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 5;
+      display: none;
+    }
+
+    .background-form iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Formulario de fondo -->
+  <div class="background-form" id="backgroundForm">
+    <iframe id="formIframe" src="" title="Formulario"></iframe>
+  </div>
+
+  <!-- Botón de cerrar -->
+  <div class="form-close-btn" id="closeBtn" onclick="closeForm()">X</div>
+
+  <!-- Contenido principal -->
+  <h1>ELIGE EL JUEGO QUE DESEAS RECARGAR</h1>
+  <div class="button-container">
+    <!-- Botones con redirección directa -->
+    <button class="button" onclick="openForm('https://vendeygana.forms.app/recargafreefire-2')">
+      <img src="https://brandlogos.net/wp-content/uploads/2022/07/free_fire-logo_brandlogos.net_xvnua.png" alt="Free Fire">
+    </button>
+    <button class="button" onclick="openForm('https://vendeygana2.github.io/RECARGACP/')">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Call_of_Duty_Mobile_Logo.png" alt="Call of Duty">
+    </button>
+    <button class="button" onclick="openForm('https://vendeygana.forms.app/mobilelegends')">
+      <img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/61/Mobile-legends-logo.svg/2560px-Mobile-legends-logo.svg.png" alt="Mobile Legends">
+    </button>
+    <button class="button" onclick="openForm('https://vendeygana2.github.io/FORTNITE/')">
+      <img src="https://pngimg.com/d/fortnite_PNG97.png" alt="Fortnite">
+    </button>
+    <button class="button" onclick="showAlert('Abrir Clash of Clans')">
+      <img src="https://www.pngplay.com/wp-content/uploads/10/Clash-Of-Clans-Logo-PNG-HD-Photos.png" alt="Clash of Clans">
+    </button>
+    <button class="button" onclick="showAlert('Abrir PUBG')">
+      <img src="https://static.cdnlogo.com/logos/p/57/pubg.png" alt="PUBG">
+    </button>
+    <button class="button" onclick="openForm('https://96vxnn73.forms.app/recargafreefire-1')">
+      <img src="https://static.vecteezy.com/system/resources/previews/027/127/586/non_2x/roblox-logo-roblox-icon-transparent-free-png.png" alt="Robux">
+    </button>
+    <button class="button" onclick="showAlert('Abrir Lords Mobile')">
+      <img src="https://cdn.freelogovectors.net/wp-content/uploads/2022/01/lords-mobile-logo-freelogovectors.net_.png" alt="Lords Mobile">
+    </button>
+  </div>
+
+  <script>
+    // Función para abrir el formulario directamente
+    function openForm(url) {
+      document.getElementById('formIframe').src = url;
+      document.getElementById('backgroundForm').style.display = 'block';
+      document.getElementById('closeBtn').style.display = 'flex';
+    }
+    
+    // Función para mostrar alertas
+    function showAlert(message) {
+      alert(message);
+    }
+    
+    // Función para cerrar el formulario
+    function closeForm() {
+      document.getElementById('backgroundForm').style.display = 'none';
+      document.getElementById('closeBtn').style.display = 'none';
+      document.getElementById('formIframe').src = '';
+    }
+  </script>
+</body>
+</html>
